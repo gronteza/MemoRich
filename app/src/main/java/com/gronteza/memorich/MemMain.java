@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 public class MemMain extends AppCompatActivity {
@@ -30,7 +29,7 @@ public class MemMain extends AppCompatActivity {
 
         relativeLayout = (RelativeLayout) findViewById(R.id.mainRelativeLayout);
 
-        createBoard(6,6);
+        createBoard(6, 6);
     }
 
     @Override
@@ -38,26 +37,26 @@ public class MemMain extends AppCompatActivity {
         super.onPostCreate(savedInstanceState);
     }
 
-    private void createBoard(int cardsInRow,int cardsInCol){
+    private void createBoard(int cardsInRow, int cardsInCol) {
         setConstants(cardsInRow, cardsInCol);
 
-        for (int rows = 0;rows < cardsInCol;rows++){
-            for (int cols = 0; cols < cardsInRow;cols++){
-                ImageView card = new ImageView(this);
-                card.setBackgroundColor(Color.BLUE);
-                card.setLayoutParams(new RelativeLayout.LayoutParams(Constants.CARD_WIDTH, Constants.CARD_HEIGHT));
-                relativeLayout.addView(card);
-                card.setX(cols * (Constants.CARD_WIDTH) + (cols + 1) * Constants.SPACE);
-                card.setY(rows * (Constants.CARD_HEIGHT) + (rows + 1) * Constants.SPACE);
+        for (int rows = 0; rows < cardsInCol; rows++) {
+            for (int cols = 0; cols < cardsInRow; cols++) {
+                relativeLayout.addView(new Card(this, Color.BLUE,
+                        (cols * (Constants.CARD_WIDTH) + (cols + 1) * Constants.SPACE),
+                        (rows * (Constants.CARD_HEIGHT) + (rows + 1) * Constants.SPACE),
+                        Constants.CARD_WIDTH,
+                        Constants.CARD_HEIGHT));
+
             }
         }
     }
 
-    private void setConstants(int cardsInRow, int cardsInCol){
+    private void setConstants(int cardsInRow, int cardsInCol) {
         screenSize = new Point();
         this.getWindowManager().getDefaultDisplay().getSize(screenSize);
-        Constants.CARD_WIDTH = (screenSize.x - ((cardsInRow+1)* Constants.SPACE))/cardsInRow;
-        Constants.CARD_HEIGHT = (screenSize.y - ((cardsInCol+1)* Constants.SPACE))/cardsInCol;
+        Constants.CARD_WIDTH = (screenSize.x - ((cardsInRow + 1) * Constants.SPACE)) / cardsInRow;
+        Constants.CARD_HEIGHT = (screenSize.y - ((cardsInCol + 1) * Constants.SPACE)) / cardsInCol;
     }
 
 }
