@@ -10,9 +10,11 @@ import android.view.WindowManager;
 import android.widget.RelativeLayout;
 
 public class MemMain extends AppCompatActivity {
-
-    Point screenSize;
-    RelativeLayout relativeLayout;
+    private Point screenSize;
+    private RelativeLayout relativeLayout;
+    private int cardsInCol;
+    private int cardsInRow;
+    private Game game;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,7 @@ public class MemMain extends AppCompatActivity {
 
         relativeLayout = (RelativeLayout) findViewById(R.id.mainRelativeLayout);
 
+        game = new Game(Subject.Children, (cardsInCol * cardsInRow) / 2);
         createBoard(2, 2);
 
     }

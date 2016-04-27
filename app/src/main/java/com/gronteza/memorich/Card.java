@@ -12,8 +12,7 @@ import android.widget.TextView;
  * Created by gront on 26/04/2016.
  */
 public class Card extends ImageView{
-    int serialNum;
-    int pairNum;
+    Card relativePairCard;
     MediaPlayer mediaPlayer;
     TextView textView;
 
