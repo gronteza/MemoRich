@@ -8,6 +8,7 @@ import android.view.View;
 public class CardGestures implements View.OnClickListener {
     private static CardGestures cardGestures;
 
+
     protected CardGestures() {
     }
 
@@ -23,16 +24,19 @@ public class CardGestures implements View.OnClickListener {
     public void onClick(View v) {
 
 // TODO: THE CODE IS COPIED, NEED TO UNDERSTAND WHAT THE FUCK IS GOING ON...
-//        View rootLayout = ;
-//        View cardFace = (View) findViewById(R.id.main_activity_card_face);
-//        View cardBack = v;
-//
-//        FlipAnimation flipAnimation = new FlipAnimation(cardFace, cardBack);
-//
-//        if (cardFace.getVisibility() == View.GONE)
-//        {
-//            flipAnimation.reverse();
-//        }
-//        rootLayout.startAnimation(flipAnimation);
+        View cardFace = ((CardFrame)v).frontCard;
+        View cardBack = ((CardFrame)v).backImage;
+
+        FlipAnimation flipAnimation = new FlipAnimation(cardFace, cardBack);
+        flipAnimation.initialize((int)(((CardFrame)v).frontCard.getWidth()/2 + ((CardFrame)v).frontCard.getX()),
+                (int)(((CardFrame)v).frontCard.getHeight()/2 + ((CardFrame)v).frontCard.getY()),
+                ((CardFrame)v).frontCard.getWidth(),
+                ((CardFrame)v).frontCard.getHeight());
+
+        if (cardFace.getVisibility() == View.GONE)
+        {
+            flipAnimation.reverse();
+        }
+        v.startAnimation(flipAnimation);
     }
 }

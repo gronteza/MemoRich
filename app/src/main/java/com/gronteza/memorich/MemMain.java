@@ -29,7 +29,8 @@ public class MemMain extends AppCompatActivity {
 
         relativeLayout = (RelativeLayout) findViewById(R.id.mainRelativeLayout);
 
-        createBoard(6, 6);
+        createBoard(2, 2);
+
     }
 
     @Override
@@ -42,13 +43,13 @@ public class MemMain extends AppCompatActivity {
 
         for (int rows = 0; rows < cardsInCol; rows++) {
             for (int cols = 0; cols < cardsInRow; cols++) {
-                relativeLayout.addView(new Card(this, Color.BLUE,
+                relativeLayout.addView(new CardFrame(this, Color.BLUE,
                         (cols * (Constants.CARD_WIDTH) + (cols + 1) * Constants.SPACE),
                         (rows * (Constants.CARD_HEIGHT) + (rows + 1) * Constants.SPACE),
                         Constants.CARD_WIDTH,
-                        Constants.CARD_HEIGHT));
-
+                        Constants.CARD_HEIGHT,((rows+1)*10 + cols + 1)));
             }
+
         }
     }
 
