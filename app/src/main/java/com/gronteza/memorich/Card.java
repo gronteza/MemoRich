@@ -3,24 +3,22 @@ package com.gronteza.memorich;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.util.AttributeSet;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-/**
- * Created by gront on 26/04/2016.
- */
-public class Card extends ImageView{
-    Card relativePairCard;
-    MediaPlayer mediaPlayer;
-    TextView textView;
+public abstract class Card extends ImageView{
+    Card equivalent;
 
     public Card(Context context, int color, int X, int Y, int width, int height){
         super(context);
         this.setBackgroundColor(color);
         this.setX(X);
         this.setY(Y);
+        this.setLayoutParams(new RelativeLayout.LayoutParams(width, height));
+    }
+
+    public void setLayouyParams(int width, int height){
         this.setLayoutParams(new RelativeLayout.LayoutParams(width, height));
     }
 

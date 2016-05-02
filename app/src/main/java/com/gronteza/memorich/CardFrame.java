@@ -1,31 +1,26 @@
 package com.gronteza.memorich;
 
-import android.content.Context;
-import android.view.Gravity;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-/**
- * Created by gront on 26/04/2016.
- */
 public class CardFrame extends RelativeLayout {
     Card frontCard;
     ImageView backImage;
 
-    public CardFrame(Context context, int color, int X, int Y, int width, int height, int id) {
-        super(context);
-        this.setX(X);
-        this.setY(Y);
+    public CardFrame(Card card, int id) {
+        super(card.getContext());
+        this.setX(card.getX());
+        this.setY(card.getY());
         this.setId(id);
+        int width = card.getLayoutParams().width;
+        int height = card.getLayoutParams().height;
         this.setLayoutParams(new RelativeLayout.LayoutParams(width, height));
         this.setOnClickListener(CardGestures.getInstance());
 
-        frontCard = new Card(context,color,X,Y,width,height);
+        frontCard = card;
         frontCard.setScaleType(ImageView.ScaleType.FIT_XY);
 
-        backImage = new ImageView(context);
+        backImage = new ImageView(card.getContext());
         backImage.setLayoutParams(new RelativeLayout.LayoutParams(width, height));
         backImage.setBackground(getResources().getDrawable(R.drawable.card_back));
 
